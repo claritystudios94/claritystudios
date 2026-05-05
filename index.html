@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clarity Studios — Dental Web Design</title>
+  <meta name="description" content="Bespoke, hand-coded websites exclusively for independent dental practices. Fast, beautiful, built to bring in new patients.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream:     #FAF7F2;
+      --warm-white:#FFFFFF;
+      --sage:      #5C7A6B;
+      --sage-light:#EBF0EC;
+      --clay:      #C4714A;
+      --clay-light:#F9EDE6;
+      --charcoal:  #2C2C2C;
+      --mid:       #6B6B6B;
+      --border:    #E8E2D9;
+      --shadow:    rgba(44,44,44,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── ANNOUNCEMENT BANNER ── */
+    .announcement {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 101;
+      background: var(--sage);
+      color: white;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .announcement-track {
+      display: flex;
+      gap: 5rem;
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+      padding-left: 100%;
+    }
+
+    .announcement-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      opacity: 0.95;
+    }
+
+    .announcement-dot {
+      width: 4px; height: 4px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 36px; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .logo span { color: var(--sage); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--mid);
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--charcoal); }
+
+    .nav-cta {
+      background: var(--sage) !important;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-weight: 500 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: #4a6559 !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 136px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(92,122,107,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(196,113,74,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--sage-light);
+      color: var(--sage);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 440px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.35s;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.5s;
+    }
+
+    .btn-primary {
+      background: var(--sage);
+      color: white;
+      padding: 0.85rem 1.8rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(92,122,107,0.3);
+    }
+
+    .btn-primary:hover {
+      background: #4a6559;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(92,122,107,0.35);
+    }
+
+    .btn-secondary {
+      color: var(--charcoal);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+
+    .btn-secondary:hover { gap: 0.7rem; }
+
+    .hero-visual {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards 0.4s;
+    }
+
+    .mockup-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 20px 60px var(--shadow), 0 4px 12px rgba(0,0,0,0.04);
+      position: relative;
+    }
+
+    .mockup-card::before {
+      content: 'Before';
+      position: absolute;
+      top: -12px; left: 20px;
+      background: #e8e2d9;
+      color: var(--mid);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+    }
+
+    .mockup-before {
+      background: #f0ede8;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .mockup-before-bar {
+      height: 8px;
+      background: #d5cfc6;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .mockup-before-bar:last-child { width: 60%; }
+
+    .mockup-before-img {
+      height: 80px;
+      background: #ddd8d0;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b5afa6;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+
+    .arrow-divider {
+      text-align: center;
+      margin: 0.8rem 0;
+      font-size: 1.2rem;
+      color: var(--clay);
+    }
+
+    .mockup-after {
+      background: linear-gradient(135deg, var(--sage) 0%, #3d5c4e 100%);
+      border-radius: 10px;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mockup-after::before {
+      content: 'After';
+      position: absolute;
+      top: 8px; right: 10px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    .mockup-after-headline {
+      font-family: 'Lora', serif;
+      color: white;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .mockup-after-sub {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .mockup-after-btn {
+      background: white;
+      color: var(--sage);
+      font-size: 0.65rem;
+      font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      display: inline-block;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-num {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--sage);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--mid);
+      margin-top: 0.1rem;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 100px 5%;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--clay-light);
+      color: var(--clay);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-tag.sage {
+      background: var(--sage-light);
+      color: var(--sage);
+    }
+
+    h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--charcoal);
+      margin-bottom: 1.2rem;
+    }
+
+    h2 em { font-style: italic; color: var(--sage); }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--mid);
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    /* ── WHY ── */
+    .why-bg {
+      background: white;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .why-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .why-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .why-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px var(--shadow);
+    }
+
+    .why-card:first-child {
+      grid-column: 1 / -1;
+      background: var(--sage-light);
+      border-color: rgba(92,122,107,0.2);
+    }
+
+    .why-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .why-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--charcoal);
+    }
+
+    .why-card p {
+      font-size: 0.85rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .why-text h2 { margin-bottom: 1rem; }
+
+    .why-list {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .why-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--mid);
+    }
+
+    .why-list li::before {
+      content: '✓';
+      color: var(--sage);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .step {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: white;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px var(--shadow);
+    }
+
+    .step-num {
+      width: 48px; height: 48px;
+      background: var(--sage-light);
+      color: var(--sage);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 auto 1.2rem;
+    }
+
+    .step h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: var(--charcoal);
+    }
+
+    .step p {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    .step-connector {
+      position: absolute;
+      top: 50%; right: -1rem;
+      transform: translateY(-50%);
+      color: var(--border);
+      font-size: 1.2rem;
+    }
+
+    /* ── PRICING ── */
+    .pricing-bg { background: white; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+      align-items: start;
+    }
+
+    .price-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px var(--shadow);
+    }
+
+    .price-card.featured {
+      background: var(--sage);
+      border-color: var(--sage);
+      transform: scale(1.03);
+    }
+
+    .price-card.featured:hover {
+      transform: scale(1.03) translateY(-4px);
+    }
+
+    .price-badge {
+      display: inline-block;
+      background: var(--clay-light);
+      color: var(--clay);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+
+    .price-card.featured .price-badge {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .price-tier {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+
+    .price-card.featured .price-tier { color: rgba(255,255,255,0.7); }
+
+    .price-amount {
+      font-family: 'Lora', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .price-card.featured .price-amount { color: white; }
+
+    .price-desc {
+      font-size: 0.82rem;
+      color: var(--mid);
+      margin-bottom: 1.5rem;
+    }
+
+    .price-card.featured .price-desc { color: rgba(255,255,255,0.7); }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--mid);
+    }
+
+    .price-card.featured .price-features li { color: rgba(255,255,255,0.85); }
+
+    .price-features li::before {
+      content: '✓';
+      color: var(--sage);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .price-card.featured .price-features li::before { color: rgba(255,255,255,0.6); }
+
+    .price-cta {
+      display: block;
+      text-align: center;
+      padding: 0.8rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      background: white;
+      color: var(--sage);
+      border: 1.5px solid var(--border);
+    }
+
+    .price-card.featured .price-cta {
+      background: white;
+      color: var(--sage);
+      border-color: white;
+    }
+
+    .price-cta:hover {
+      background: var(--sage);
+      color: white;
+      border-color: var(--sage);
+    }
+
+    .price-card.featured .price-cta:hover {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .retainer-note {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1.2rem;
+      background: var(--clay-light);
+      border-radius: 12px;
+      font-size: 0.88rem;
+      color: var(--mid);
+    }
+
+    .retainer-note strong { color: var(--clay); }
+
+    /* ── PORTFOLIO ── */
+    .portfolio-note {
+      background: var(--sage-light);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      margin-top: 3rem;
+      border: 1px dashed rgba(92,122,107,0.3);
+    }
+
+    .portfolio-note p {
+      color: var(--sage);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .portfolio-note strong { font-weight: 500; }
+
+    /* ── CONTACT ── */
+    .contact-bg {
+      background: var(--charcoal);
+    }
+
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-inner h2 { color: white; }
+    .contact-inner h2 em { color: var(--clay); }
+
+    .contact-inner p {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-input {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+
+    .form-input::placeholder { color: rgba(255,255,255,0.35); }
+
+    .form-input:focus {
+      border-color: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.12);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      background: var(--clay);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(196,113,74,0.35);
+    }
+
+    .form-submit:hover {
+      background: #b5623d;
+      transform: translateY(-2px);
+    }
+
+    .contact-alt {
+      margin-top: 2rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+    }
+
+    .contact-alt a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: color 0.2s;
+    }
+
+    .contact-alt a:hover { color: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #222;
+      padding: 2rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--sage); }
+
+    footer p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .step-connector { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.featured { transform: none; }
+      .form-row { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BANNER -->
+  <div class="announcement" role="marquee">
+    <div class="announcement-track">
+      <div class="announcement-item">🦷 Now taking on new dental practices — limited availability for founding clients</div>
+      <div class="announcement-dot"></div>
+      <div class="announcement-item">⚡ Hand-coded sites that score 100 on Google PageSpeed</div>
+      <div class="announcement-dot"></div>
+      <div class="announcement-item">✉️ Free mockup for your practice — no obligation</div>
+      <div class="announcement-dot"></div>
+      <div class="announcement-item">📅 Live in 2 weeks, start to finish</div>
+      <div class="announcement-dot"></div>
+      <div class="announcement-item">🦷 Now taking on new dental practices — limited availability for founding clients</div>
+      <div class="announcement-dot"></div>
+      <div class="announcement-item">⚡ Hand-coded sites that score 100 on Google PageSpeed</div>
+      <div class="announcement-dot"></div>
+      <div class="announcement-item">✉️ Free mockup for your practice — no obligation</div>
+      <div class="announcement-dot"></div>
+      <div class="announcement-item">📅 Live in 2 weeks, start to finish</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">Clarity<span>Studios</span></a>
+    <ul>
+      <li><a href="#why">Why us</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-tag">Dental web design specialists</div>
+        <h1>Your practice deserves a website that <em>actually works</em></h1>
+        <p class="hero-sub">We build hand-coded, fast-loading websites exclusively for independent dental practices — designed to turn nervous Googlers into booked appointments.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">See what we can do →</a>
+          <a href="#how" class="btn-secondary">How it works ↓</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="mockup-card">
+          <div class="mockup-before">
+            <div class="mockup-before-img">stock photo · comic sans · 2011</div>
+            <div class="mockup-before-bar"></div>
+            <div class="mockup-before-bar"></div>
+          </div>
+          <div class="arrow-divider">↓</div>
+          <div class="mockup-after">
+            <div class="mockup-after-headline">Welcome to Hillside Dental</div>
+            <div class="mockup-after-sub">Gentle care for nervous patients in Sheffield</div>
+            <div class="mockup-after-btn">Book a consultation →</div>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-num">2 wks</div>
+              <div class="stat-label">avg. delivery</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">100</div>
+              <div class="stat-label">PageSpeed score</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">£0</div>
+              <div class="stat-label">platform fees</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why-bg" id="why">
+    <div class="section-inner">
+      <div class="why-grid">
+        <div class="why-text">
+          <div class="section-tag">Why Clarity Studios</div>
+          <h2>We only build for <em>dental practices</em></h2>
+          <p class="section-lead">We're not a generalist agency that happens to take dental clients. Dentistry is all we do — which means we understand your patients, your compliance requirements, and what makes someone choose your practice over the one down the road.</p>
+          <ul class="why-list">
+            <li>GDC registration displayed correctly, every time</li>
+            <li>Copy written for anxious patients — not just search engines</li>
+            <li>Faster than any WordPress site you've ever seen</li>
+            <li>No Wix, no templates — genuinely bespoke</li>
+            <li>You own the site outright. No platform lock-in.</li>
+          </ul>
+        </div>
+        <div class="why-cards">
+          <div class="why-card">
+            <div class="why-icon">⚡</div>
+            <h3>Hand-coded for speed</h3>
+            <p>No bloated WordPress plugins. Our sites consistently score 95–100 on Google PageSpeed — and that matters for rankings.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">🦷</div>
+            <h3>Dental specialists</h3>
+            <p>We understand CQC compliance, GDC requirements, and what nervous patients need to see before they call.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">✍️</div>
+            <h3>Copy included</h3>
+            <p>Every site comes with professionally written copy tailored to your practice — no blank pages for you to fill.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">📅</div>
+            <h3>Live in 2 weeks</h3>
+            <p>From first conversation to live website in a fortnight. No months-long projects. No disappearing agencies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="section-inner">
+      <div style="text-align: center; margin-bottom: 1rem;">
+        <div class="section-tag sage">The process</div>
+        <h2>Simple from start to <em>launch</em></h2>
+        <p class="section-lead" style="margin: 0 auto;">We've made it as easy as possible. No jargon, no endless feedback rounds, no surprises.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>We send you a free mockup</h3>
+          <p>Before you spend a penny, we build a free preview of what your new site could look like. No obligation — we just want you to see the difference.</p>
+          <div class="step-connector">→</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>We build the real thing</h3>
+          <p>Once you're happy to go ahead, we collect your content, write your copy, and build your bespoke site. We keep you updated throughout.</p>
+          <div class="step-connector">→</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Your site goes live</h3>
+          <p>We handle everything — hosting, SSL, domain setup, Google Analytics. You just check it looks right and we flip the switch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-bg" id="pricing">
+    <div class="section-inner">
+      <div style="text-align: center; margin-bottom: 1rem;">
+        <div class="section-tag">Transparent pricing</div>
+        <h2>No hidden costs, <em>ever</em></h2>
+        <p class="section-lead" style="margin: 0 auto;">One clear price to build it. One low monthly fee to keep it perfect. That's it.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-tier">Essential</div>
+          <div class="price-amount">£1,500</div>
+          <div class="price-desc">one-off build</div>
+          <ul class="price-features">
+            <li>Single-page site</li>
+            <li>Mobile responsive</li>
+            <li>Contact form</li>
+            <li>Basic SEO setup</li>
+            <li>12 months hosting</li>
+          </ul>
+          <a href="#contact" class="price-cta">Get started</a>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">Most popular</div>
+          <div class="price-tier">Standard</div>
+          <div class="price-amount">£2,500</div>
+          <div class="price-desc">one-off build</div>
+          <ul class="price-features">
+            <li>3–5 page site</li>
+            <li>Professional copywriting</li>
+            <li>Full SEO setup</li>
+            <li>Google Analytics</li>
+            <li>Online booking ready</li>
+            <li>12 months hosting</li>
+          </ul>
+          <a href="#contact" class="price-cta">Get started</a>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Premium</div>
+          <div class="price-amount">£3,500+</div>
+          <div class="price-desc">one-off build</div>
+          <ul class="price-features">
+            <li>5+ pages</li>
+            <li>Full SEO & local SEO</li>
+            <li>Booking system integration</li>
+            <li>Blog setup</li>
+            <li>Custom integrations</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#contact" class="price-cta">Get started</a>
+        </div>
+      </div>
+      <div class="retainer-note">
+        All builds include an optional <strong>monthly care plan from £99/month</strong> — covering hosting, security, content updates, and priority support. Cancel anytime after 6 months.
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="section-inner">
+      <div class="section-tag sage">Portfolio</div>
+      <h2>Work that <em>speaks for itself</em></h2>
+      <div class="portfolio-note">
+        <p>🦷 <strong>We're a new studio with big ambitions.</strong> We're currently offering a small number of practices a significantly reduced rate in exchange for permission to use the project as a case study.<br><br>If you'd like a beautiful new website and to be featured in our portfolio, <a href="#contact" style="color: var(--sage); text-decoration: underline;">get in touch</a> — these spots won't last long.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-bg" id="contact">
+    <div class="section-inner">
+      <div class="contact-inner">
+        <div class="section-tag" style="background: rgba(196,113,74,0.2); color: var(--clay);">Get in touch</div>
+        <h2>Let's talk about <em>your practice</em></h2>
+        <p>Tell us a little about yourself and we'll come back to you within one working day — usually much sooner.</p>
+        <form class="contact-form" action="https://formspree.io/f/mjglryjl" method="POST">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your name" class="form-input" required>
+            <input type="text" name="practice" placeholder="Practice name" class="form-input" required>
+          </div>
+          <input type="email" name="email" placeholder="Email address" class="form-input" required>
+          <input type="tel" name="phone" placeholder="Phone number (optional)" class="form-input">
+          <textarea name="message" placeholder="Tell us about your practice and what you're looking for..." class="form-input" required></textarea>
+          <button type="submit" class="form-submit">Send message →</button>
+        </form>
+        <p class="contact-alt">Or email us directly at <a href="mailto:hello@claritystudios.uk">hello@claritystudios.uk</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">Clarity<span>Studios</span></a>
+    <p>© 2026 Clarity Studios. All rights reserved.</p>
+    <a href="mailto:hello@claritystudios.uk">hello@claritystudios.uk</a>
+  </footer>
+
+</body>
+</html>
