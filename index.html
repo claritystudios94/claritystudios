@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clarity Studios | Websites for Independent Dental Practices</title>
+  <meta name="description" content="Clarity Studios — Bespoke, hand-coded websites exclusively for independent dental practices across the UK. Fast, beautiful, built to bring in new patients.">
+  <meta property="og:title" content="Clarity Studios | Dental Web Design">
+  <meta property="og:description" content="Bespoke, high-converting websites for independent dental practices across the UK.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://claritystudios.uk">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:#F8F7F4;--white:#FFFFFF;--navy:#1B2F5E;--navy-light:#243870;--navy-dark:#0E1A35;
+      --gold:#C4922A;--gold-light:#FAF0DC;--gold-mid:#D9AC58;--mid:#6B6B6B;
+      --border:#E4DDD4;--shadow:rgba(27,47,94,0.10);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);font-size:16px;line-height:1.65;overflow-x:hidden}
+    .skip-link{position:absolute;top:-100px;left:1rem;background:var(--navy);color:white;padding:.5rem 1rem;border-radius:4px;font-size:.85rem;z-index:9999;text-decoration:none;transition:top .2s}
+    .skip-link:focus{top:1rem}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:66px}
+    .logo{font-family:'Lora',serif;font-size:1.2rem;font-weight:600;color:white;text-decoration:none;letter-spacing:-.01em}
+    .logo span{color:var(--gold)}
+    nav ul{list-style:none;display:flex;gap:2.2rem;align-items:center}
+    nav ul a{text-decoration:none;color:rgba(255,255,255,.65);font-size:.88rem;font-weight:400;transition:color .2s}
+    nav ul a:hover{color:white}
+    .nav-cta{background:var(--gold)!important;color:white!important;padding:.5rem 1.2rem;border-radius:100px;font-weight:500!important;transition:background .2s,transform .15s!important}
+    .nav-cta:hover{background:var(--gold-mid)!important;transform:translateY(-1px)}
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 6% 80px;background:var(--navy-dark);position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(196,146,42,.12) 0%,transparent 65%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,146,42,.4),transparent)}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(196,146,42,.12);border:1px solid rgba(196,146,42,.25);color:var(--gold-mid);font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.4rem 1rem;border-radius:100px;margin-bottom:2rem;opacity:0;animation:fadeUp .7s ease forwards .1s}
+    .hero h1{font-family:'Lora',serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;color:white;max-width:820px;margin-bottom:1.8rem;opacity:0;animation:fadeUp .7s ease forwards .2s}
+    .hero h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+    .hero-sub{font-size:1.1rem;font-weight:300;color:rgba(255,255,255,.6);max-width:560px;line-height:1.8;margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s ease forwards .35s}
+    .hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:center;margin-bottom:4rem;opacity:0;animation:fadeUp .7s ease forwards .5s}
+    .btn-primary{background:var(--gold);color:white;padding:.95rem 2rem;border-radius:100px;text-decoration:none;font-weight:500;font-size:.95rem;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 24px rgba(196,146,42,.35)}
+    .btn-primary:hover{background:var(--gold-mid);transform:translateY(-2px);box-shadow:0 8px 32px rgba(196,146,42,.4)}
+    .btn-ghost{color:rgba(255,255,255,.65);text-decoration:none;font-size:.95rem;display:flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.2);padding:.95rem 1.8rem;border-radius:100px;transition:color .2s,border-color .2s}
+    .btn-ghost:hover{color:white;border-color:rgba(255,255,255,.5)}
+    .hero-trust{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .7s ease forwards .65s}
+    .hero-trust-item{font-size:.8rem;color:rgba(255,255,255,.4);letter-spacing:.06em;display:flex;align-items:center;gap:.5rem}
+    .hero-trust-dot{width:4px;height:4px;border-radius:50%;background:var(--gold)}
+    .scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(255,255,255,.3);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:0;animation:fadeIn 1s ease forwards 1.2s}
+    .scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,rgba(196,146,42,.6),transparent);animation:scrollPulse 2s ease-in-out infinite}
+    @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
+    .stats-bar{background:var(--navy);padding:1.2rem 6%;display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+    .stats-item{display:flex;align-items:center;gap:.6rem;padding:.4rem 2rem;border-right:1px solid rgba(255,255,255,.1);font-size:.82rem;color:rgba(255,255,255,.55);letter-spacing:.04em}
+    .stats-item:last-child{border-right:none}
+    .stats-item strong{color:white;font-weight:500}
+    section{padding:110px 6%}
+    .section-inner{max-width:1140px;margin:0 auto}
+    .section-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+    h2{font-family:'Lora',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:600;line-height:1.2;letter-spacing:-.02em;color:var(--navy);margin-bottom:1.2rem}
+    h2 em{font-style:italic;font-weight:400;color:var(--gold)}
+    .lead{font-size:1.05rem;font-weight:300;color:var(--mid);line-height:1.8;max-width:540px}
+    /* WHY */
+    .why-bg{background:var(--white)}
+    .why-top{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .why-card{background:var(--cream);border-radius:16px;padding:2rem;border:1px solid var(--border);transition:transform .2s,box-shadow .2s,border-color .2s}
+    .why-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px var(--shadow);border-color:var(--navy)}
+    .why-card.featured{background:var(--navy);border-color:var(--navy);grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:center}
+    .why-icon{width:44px;height:44px;background:var(--gold-light);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;flex-shrink:0}
+    .why-card.featured .why-icon{background:rgba(255,255,255,.1)}
+    .why-card h3{font-family:'Lora',serif;font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:.5rem}
+    .why-card.featured h3{color:white;font-size:1.3rem}
+    .why-card p{font-size:.88rem;font-weight:300;color:var(--mid);line-height:1.7}
+    .why-card.featured p{color:rgba(255,255,255,.6)}
+    .why-card-stat{text-align:right}
+    .why-card-stat-num{font-family:'Lora',serif;font-size:3.5rem;font-weight:600;color:var(--gold);line-height:1;margin-bottom:.3rem}
+    .why-card-stat-label{font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.05em}
+    /* SERVICES */
+    .services-bg{background:var(--cream)}
+    .services-top{text-align:center;margin-bottom:4rem}
+    .services-top .lead{margin:0 auto}
+    .services-list{display:flex;flex-direction:column}
+    .service-item{display:grid;grid-template-columns:80px 1fr auto;gap:2rem;align-items:start;padding:2.5rem 0;border-bottom:1px solid var(--border);transition:background .2s}
+    .service-item:first-child{border-top:1px solid var(--border)}
+    .service-item:hover{background:rgba(27,47,94,.02)}
+    .service-num{font-family:'Lora',serif;font-size:2.8rem;font-weight:600;color:var(--gold-light);line-height:1;margin-top:.2rem}
+    .service-content h3{font-family:'Lora',serif;font-size:1.3rem;font-weight:600;color:var(--navy);margin-bottom:.6rem}
+    .service-content p{font-size:.9rem;font-weight:300;color:var(--mid);line-height:1.75;max-width:560px;margin-bottom:1rem}
+    .service-bullets{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem}
+    .service-bullet{background:var(--gold-light);color:var(--navy);font-size:.75rem;font-weight:500;padding:.25rem .7rem;border-radius:100px}
+    .service-price{text-align:right;flex-shrink:0;padding-top:.2rem}
+    .service-price-from{font-size:.7rem;color:var(--mid);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.2rem}
+    .service-price-amount{font-family:'Lora',serif;font-size:1.5rem;font-weight:600;color:var(--navy);line-height:1}
+    .service-price-sub{font-size:.72rem;color:var(--mid);margin-top:.2rem}
+    .services-cta{margin-top:3rem;padding:2rem;background:var(--navy-dark);border-radius:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .services-cta p{font-size:1rem;color:rgba(255,255,255,.7);font-weight:300}
+    .services-cta strong{color:white;font-weight:500}
+    /* PORTFOLIO */
+    .portfolio-bg{background:var(--white)}
+    .portfolio-top{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+    .portfolio-card{border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:transform .2s,box-shadow .2s;text-decoration:none}
+    .portfolio-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px var(--shadow)}
+    .portfolio-card-image{aspect-ratio:16/10;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .portfolio-card-image.wine{background:linear-gradient(135deg,#5C2340 0%,#7A3058 100%)}
+    .portfolio-card-image.forest{background:linear-gradient(135deg,#265044 0%,#357365 100%)}
+    .portfolio-card-image.teal{background:linear-gradient(135deg,#162240 0%,#237568 100%)}
+    .portfolio-card-deco{font-family:'Lora',serif;font-size:7rem;font-style:italic;font-weight:600;color:rgba(255,255,255,.08);line-height:1;user-select:none}
+    .portfolio-card-badge{position:absolute;top:1rem;right:1rem;background:var(--gold);color:white;font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .7rem;border-radius:100px}
+    .portfolio-card-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);padding:1.5rem 1.2rem 1rem;color:white;font-size:.8rem;letter-spacing:.05em}
+    .portfolio-card-body{padding:1.4rem;background:white}
+    .portfolio-card-title{font-family:'Lora',serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+    .portfolio-card-desc{font-size:.82rem;color:var(--mid);font-weight:300;line-height:1.6}
+    .portfolio-card-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:.78rem;font-weight:500;color:var(--navy);text-decoration:none;letter-spacing:.04em;transition:gap .2s,color .2s}
+    .portfolio-card-link:hover{gap:.7rem;color:var(--gold)}
+    .portfolio-note{background:var(--gold-light);border-radius:12px;padding:1.5rem 2rem;border:1px solid rgba(196,146,42,.2);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .portfolio-note p{font-size:.92rem;color:var(--navy);font-weight:300}
+    .portfolio-note strong{font-weight:500}
+    /* ABOUT */
+    .about-bg{background:var(--navy-dark)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+    .about-left .section-eyebrow{color:var(--gold-mid)}
+    .about-left h2{color:white}
+    .about-left h2 em{color:var(--gold)}
+    .about-left .lead{color:rgba(255,255,255,.55);margin-bottom:2rem}
+    .about-left p{font-size:.95rem;color:rgba(255,255,255,.5);font-weight:300;line-height:1.8;margin-bottom:1rem}
+    .about-badges{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:2rem}
+    .about-badge{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.8rem 1rem;display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:rgba(255,255,255,.6)}
+    .about-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+    .about-right{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:2.5rem}
+    .about-right h3{font-family:'Lora',serif;font-size:1.3rem;font-weight:600;color:white;margin-bottom:.6rem}
+    .about-right p{font-size:.9rem;color:rgba(255,255,255,.5);font-weight:300;line-height:1.75;margin-bottom:1.5rem}
+    .about-cta-box{background:rgba(196,146,42,.1);border:1px solid rgba(196,146,42,.25);border-radius:12px;padding:1.5rem;margin-top:2rem}
+    .about-cta-box h4{font-family:'Lora',serif;font-size:1rem;font-weight:600;color:white;margin-bottom:.4rem}
+    .about-cta-box p{font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:1rem}
+    /* PRICING */
+    .pricing-bg{background:var(--white)}
+    .pricing-top{text-align:center;margin-bottom:3.5rem}
+    .pricing-top .lead{margin:0 auto}
+    .pricing-label{font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin:3rem 0 1.5rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:.5rem}
+    .price-card{background:var(--cream);border-radius:16px;padding:2rem;border:1.5px solid var(--border);transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+    .price-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px var(--shadow);border-color:var(--navy)}
+    .price-card.featured{background:var(--navy);border-color:var(--navy)}
+    .price-card.featured:hover{border-color:var(--gold)}
+    .price-badge{display:inline-block;background:var(--gold);color:white;font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .7rem;border-radius:100px;margin-bottom:1rem}
+    .price-tier{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem;font-weight:500}
+    .price-card.featured .price-tier{color:rgba(255,255,255,.4)}
+    .price-amount{font-family:'Lora',serif;font-size:2.4rem;font-weight:600;color:var(--navy);line-height:1;margin-bottom:.3rem}
+    .price-card.featured .price-amount{color:white}
+    .price-desc{font-size:.8rem;color:var(--mid);margin-bottom:1.5rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border)}
+    .price-card.featured .price-desc{color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.08)}
+    .price-features{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.8rem}
+    .price-features li{display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--mid);font-weight:300}
+    .price-card.featured .price-features li{color:rgba(255,255,255,.7)}
+    .price-check{width:16px;height:16px;background:var(--gold-light);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .price-card.featured .price-check{background:rgba(196,146,42,.25)}
+    .price-cta{display:block;text-align:center;padding:.8rem;border-radius:100px;text-decoration:none;font-weight:500;font-size:.88rem;transition:all .2s;background:white;color:var(--navy);border:1.5px solid var(--border)}
+    .price-card.featured .price-cta{background:var(--gold);color:white;border-color:var(--gold)}
+    .price-cta:hover{background:var(--navy);color:white;border-color:var(--navy)}
+    .price-card.featured .price-cta:hover{background:var(--gold-mid);border-color:var(--gold-mid)}
+    .pricing-note{text-align:center;margin-top:2rem;padding:1.2rem;background:var(--gold-light);border-radius:10px;font-size:.88rem;color:var(--navy);border:1px solid rgba(196,146,42,.2)}
+    .pricing-note strong{font-weight:500;color:var(--gold)}
+    /* CONTACT */
+    .contact-bg{background:var(--navy-dark);background-image:radial-gradient(ellipse at 80% 20%,rgba(196,146,42,.08) 0%,transparent 55%)}
+    .contact-inner{max-width:680px;margin:0 auto;text-align:center}
+    .contact-inner .section-eyebrow{color:var(--gold-mid)}
+    .contact-inner h2{color:white}
+    .contact-inner .lead{color:rgba(255,255,255,.5);margin:0 auto 2.5rem}
+    .contact-form{display:flex;flex-direction:column;gap:1rem;text-align:left}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .form-group{display:flex;flex-direction:column;gap:.4rem}
+    .form-label{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+    .form-input{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:.85rem 1rem;font-family:'DM Sans',sans-serif;font-size:.9rem;color:white;outline:none;transition:border-color .2s,background .2s;width:100%}
+    .form-input::placeholder{color:rgba(255,255,255,.2)}
+    .form-input:focus{border-color:var(--gold);background:rgba(255,255,255,.09)}
+    textarea.form-input{resize:vertical;min-height:130px}
+    .form-submit{background:var(--gold);color:white;border:none;padding:1rem 2rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;box-shadow:0 4px 20px rgba(196,146,42,.3);align-self:center}
+    .form-submit:hover{background:var(--gold-mid);transform:translateY(-1px)}
+    .contact-meta{margin-top:1.5rem;font-size:.82rem;color:rgba(255,255,255,.3);text-align:center}
+    .contact-meta a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+    .contact-meta a:hover{color:white}
+    /* FOOTER */
+    footer{background:#080F1E;padding:4rem 6% 2rem;border-top:1px solid rgba(255,255,255,.05)}
+    .footer-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:2rem}
+    .footer-brand .logo{font-size:1.1rem;display:block;margin-bottom:.8rem}
+    .footer-tagline{font-size:.82rem;color:rgba(255,255,255,.35);font-weight:300;line-height:1.65;max-width:240px;margin-bottom:1.5rem}
+    .footer-contact-line{font-size:.8rem;color:rgba(255,255,255,.35);margin-bottom:.4rem}
+    .footer-contact-line a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+    .footer-contact-line a:hover{color:white}
+    .footer-col h4{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.2rem}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+    .footer-col ul a{font-size:.85rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;font-weight:300}
+    .footer-col ul a:hover{color:rgba(255,255,255,.7)}
+    .footer-bottom{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-bottom p{font-size:.78rem;color:rgba(255,255,255,.2)}
+    .footer-bottom a{color:rgba(255,255,255,.25);text-decoration:none;font-size:.78rem;transition:color .2s}
+    .footer-bottom a:hover{color:rgba(255,255,255,.5)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @media(max-width:900px){
+      .why-top{grid-template-columns:1fr;gap:2rem}
+      .why-grid{grid-template-columns:1fr 1fr}
+      .why-card.featured{grid-template-columns:1fr}
+      .why-card-stat{text-align:left}
+      .service-item{grid-template-columns:50px 1fr}
+      .service-price{display:none}
+      .portfolio-top{grid-template-columns:1fr;gap:1.5rem}
+      .portfolio-grid{grid-template-columns:1fr 1fr}
+      .about-grid{grid-template-columns:1fr;gap:3rem}
+      .pricing-grid{grid-template-columns:1fr}
+      .form-row{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+      nav ul{display:none}
+      .stats-item{padding:.4rem 1rem;font-size:.75rem}
+    }
+    @media(max-width:480px){
+      section{padding:70px 5%}
+      nav{padding:0 5%}
+      .hero{padding:100px 5% 70px}
+      .hero h1{font-size:2.4rem}
+      .footer-grid{grid-template-columns:1fr}
+      .why-grid{grid-template-columns:1fr}
+      .portfolio-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav>
+    <a href="#" class="logo">Clarity<span>Studios</span></a>
+    <ul>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Get Free Mockup</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-eyebrow">Dental Web Design Specialists</div>
+    <h1>The Website Your Practice Has Always <em>Deserved.</em></h1>
+    <p class="hero-sub">We design and build bespoke, hand-coded websites exclusively for independent dental practices across the UK — helping new patients find you at the moment they need you most.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get Your Free Homepage Mockup</a>
+      <a href="#portfolio" class="btn-ghost">See Our Work →</a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-trust-item">UK Based</div>
+      <div class="hero-trust-dot"></div>
+      <div class="hero-trust-item">Dental Specialists</div>
+      <div class="hero-trust-dot"></div>
+      <div class="hero-trust-item">No Templates. Ever.</div>
+      <div class="hero-trust-dot"></div>
+      <div class="hero-trust-item">Live in 2 Weeks</div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stats-item"><strong>Hand-coded</strong> — zero page builders</div>
+    <div class="stats-item"><strong>100</strong> Google PageSpeed score</div>
+    <div class="stats-item"><strong>2 weeks</strong> from deposit to live</div>
+    <div class="stats-item"><strong>Dental-only</strong> — we know your patients</div>
+    <div class="stats-item"><strong>GDC-compliant</strong> — built in from day one</div>
+  </div>
+
+  <main id="main-content">
+
+    <section class="why-bg" id="why-us">
+      <div class="section-inner">
+        <div class="why-top">
+          <div>
+            <div class="section-eyebrow">Why Clarity Studios</div>
+            <h2>We Know Your Patients Before You Tell Us</h2>
+          </div>
+          <p class="lead">Every new patient enquiry starts with a Google search and a feeling. We make sure that feeling is warmth, trust, and confidence in your practice from the very first second.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card featured">
+            <div>
+              <div class="why-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Dental-Only Expertise</h3>
+              <p>We work exclusively with independent dental practices. We understand CQC compliance, GDC requirements, and what nervous patients need to see before they book — because it's all we do.</p>
+            </div>
+            <div>
+              <div class="why-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3>GDC-Compliant Builds</h3>
+              <p>Every site includes proper GDC registration display, CQC references, cookie consent, and privacy policies — built in from day one, not bolted on later.</p>
+            </div>
+            <div class="why-card-stat">
+              <div class="why-card-stat-num">100</div>
+              <div class="why-card-stat-label">Google PageSpeed score on every build</div>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B2F5E" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <h3>Fast, Reliable Delivery</h3>
+            <p>Your website live in 2 weeks, not months. Clear milestones, transparent communication, and zero surprises from brief to launch.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B2F5E" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+            <h3>Conversion-First Design</h3>
+            <p>Beautiful design is nothing without results. Every layout decision is made to turn website visitors into booked appointments.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B2F5E" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <h3>Empathetic Copywriting</h3>
+            <p>We write the words too. Copy that speaks to nervous patients — and gently guides them to pick up the phone.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B2F5E" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <h3>Local SEO That Works</h3>
+            <p>We optimise your site so patients searching "dentist near me" in your area find your practice at the top — not a competitor.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-bg" id="services">
+      <div class="section-inner">
+        <div class="services-top">
+          <div class="section-eyebrow">What We Build</div>
+          <h2>Everything Your Practice Needs <em>Online</em></h2>
+          <p class="lead">From a first-class website to ongoing growth — we handle every aspect of your digital presence.</p>
+        </div>
+        <div class="services-list">
+          <div class="service-item">
+            <div class="service-num">01</div>
+            <div class="service-content">
+              <h3>Bespoke Website Design & Build</h3>
+              <p>Custom-built, responsive websites designed from the ground up. No page builders, no off-the-shelf templates — every detail crafted around your practice's identity and your patients' expectations.</p>
+              <ul class="service-bullets">
+                <li class="service-bullet">Mobile-first & responsive</li>
+                <li class="service-bullet">Lightning-fast load times</li>
+                <li class="service-bullet">GDC & CQC compliant</li>
+                <li class="service-bullet">Copywriting included</li>
+              </ul>
+            </div>
+            <div class="service-price">
+              <div class="service-price-from">From</div>
+              <div class="service-price-amount">£1,500</div>
+              <div class="service-price-sub">one-off</div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-num">02</div>
+            <div class="service-content">
+              <h3>Search Engine Optimisation</h3>
+              <p>Technical and local SEO that positions your practice at the top of Google for searches like "dentist in [your town]" — where patients are actively looking for a new dentist.</p>
+              <ul class="service-bullets">
+                <li class="service-bullet">Local keyword strategy</li>
+                <li class="service-bullet">Google Business Profile</li>
+                <li class="service-bullet">Technical SEO audit</li>
+                <li class="service-bullet">Monthly reporting</li>
+              </ul>
+            </div>
+            <div class="service-price">
+              <div class="service-price-from">From</div>
+              <div class="service-price-amount">£149</div>
+              <div class="service-price-sub">per month</div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-num">03</div>
+            <div class="service-content">
+              <h3>Copywriting & Content</h3>
+              <p>Warm, patient-focused copy written by specialists who understand dental anxiety — and know exactly what patients need to read to feel comfortable booking.</p>
+              <ul class="service-bullets">
+                <li class="service-bullet">Treatment pages</li>
+                <li class="service-bullet">Team profiles</li>
+                <li class="service-bullet">SEO blog articles</li>
+                <li class="service-bullet">GDC-compliant disclaimers</li>
+              </ul>
+            </div>
+            <div class="service-price">
+              <div class="service-price-from">Included</div>
+              <div class="service-price-amount" style="font-size:1.1rem;margin-top:.3rem">in all builds</div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-num">04</div>
+            <div class="service-content">
+              <h3>Website Rebrand & Refresh</h3>
+              <p>Already have a website that isn't working? We audit, redesign, and relaunch your existing site — improving performance, design, and conversions without losing your existing patients.</p>
+              <ul class="service-bullets">
+                <li class="service-bullet">Full site audit</li>
+                <li class="service-bullet">UX / UI redesign</li>
+                <li class="service-bullet">Content migration</li>
+                <li class="service-bullet">Performance overhaul</li>
+              </ul>
+            </div>
+            <div class="service-price">
+              <div class="service-price-from">From</div>
+              <div class="service-price-amount">£1,500</div>
+              <div class="service-price-sub">one-off</div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-num">05</div>
+            <div class="service-content">
+              <h3>Ongoing Support & Maintenance</h3>
+              <p>Your website is a living asset. Monthly care plans cover updates, security monitoring, hosting, and continuous improvement — so you can focus on patients, not your tech stack.</p>
+              <ul class="service-bullets">
+                <li class="service-bullet">Monthly content updates</li>
+                <li class="service-bullet">Security monitoring</li>
+                <li class="service-bullet">Analytics reporting</li>
+                <li class="service-bullet">Priority support</li>
+              </ul>
+            </div>
+            <div class="service-price">
+              <div class="service-price-from">From</div>
+              <div class="service-price-amount">£99</div>
+              <div class="service-price-sub">per month</div>
+            </div>
+          </div>
+        </div>
+        <div class="services-cta">
+          <p><strong>Not sure which service you need?</strong> Book a free 15-minute call and we'll walk you through what would make the biggest difference for your practice.</p>
+          <a href="https://calendly.com/hello-claritystudios/website-review-call" class="btn-primary" style="white-space:nowrap;font-size:.9rem">Book a Free Call →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-bg" id="portfolio">
+      <div class="section-inner">
+        <div class="portfolio-top">
+          <div>
+            <div class="section-eyebrow">Our Work</div>
+            <h2>See the <em>Difference</em></h2>
+          </div>
+          <p class="lead">Every mockup below was hand-coded from scratch — built specifically for that practice, not adapted from a template.</p>
+        </div>
+        <div class="portfolio-grid">
+          <a href="https://abbeydale.claritystudios.uk" target="_blank" class="portfolio-card">
+            <div class="portfolio-card-image wine">
+              <div class="portfolio-card-deco">A</div>
+              <div class="portfolio-card-badge">Concept</div>
+              <div class="portfolio-card-label">Private Dentistry · Sheffield</div>
+            </div>
+            <div class="portfolio-card-body">
+              <div class="portfolio-card-title">Abbeydale Dental Care</div>
+              <p class="portfolio-card-desc">Wix template with a Live.co.uk email — replaced with a warm, premium design that finally showcases their 4.7-star patient reviews.</p>
+              <span class="portfolio-card-link">View mockup →</span>
+            </div>
+          </a>
+          <a href="https://chapeltown.claritystudios.uk" target="_blank" class="portfolio-card">
+            <div class="portfolio-card-image teal">
+              <div class="portfolio-card-deco">C</div>
+              <div class="portfolio-card-badge">Concept</div>
+              <div class="portfolio-card-label">Family Dentistry · Sheffield</div>
+            </div>
+            <div class="portfolio-card-body">
+              <div class="portfolio-card-title">Chapeltown Dental Care</div>
+              <p class="portfolio-card-desc">Site untouched since 2021 with a Gmail address — replaced with a community-focused design that leads with their 16-year BDA accreditation.</p>
+              <span class="portfolio-card-link">View mockup →</span>
+            </div>
+          </a>
+          <a href="https://wollaton.claritystudios.uk" target="_blank" class="portfolio-card">
+            <div class="portfolio-card-image forest">
+              <div class="portfolio-card-deco">W</div>
+              <div class="portfolio-card-badge">Concept</div>
+              <div class="portfolio-card-label">Family Practice · Nottingham</div>
+            </div>
+            <div class="portfolio-card-body">
+              <div class="portfolio-card-title">Wollaton Road Dental</div>
+              <p class="portfolio-card-desc">Google Plus link still live, last updated 2020 — replaced with a warm, personal design built around their 50-year patient loyalty story.</p>
+              <span class="portfolio-card-link">View mockup →</span>
+            </div>
+          </a>
+        </div>
+        <div class="portfolio-note">
+          <p><strong>We're a new studio with big ambitions.</strong> We're offering a small number of practices a significantly reduced rate in exchange for permission to use the project as a case study.</p>
+          <a href="#contact" class="btn-primary" style="white-space:nowrap;font-size:.88rem">Claim a founding client spot →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-bg" id="about">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-left">
+            <div class="section-eyebrow">About Us</div>
+            <h2>Built for One Sector. <em>Perfected</em> for It.</h2>
+            <p class="lead">Clarity Studios was founded on one belief: independent dental practices deserve better digital representation than generic agencies provide.</p>
+            <p>We work with practices trusted by families at some of the most anxious moments in their lives. That trust needs to show before a patient ever picks up the phone — and it starts with your website.</p>
+            <p>As a boutique UK studio, you deal directly with the people doing the work. No account managers, no offshore handoffs, no surprises. Just a thoughtful partnership between your expertise and ours.</p>
+            <div class="about-badges">
+              <div class="about-badge"><div class="about-badge-dot"></div>100% Dental Sector Focused</div>
+              <div class="about-badge"><div class="about-badge-dot"></div>UK Based & Operated</div>
+              <div class="about-badge"><div class="about-badge-dot"></div>Bespoke Every Single Time</div>
+              <div class="about-badge"><div class="about-badge-dot"></div>Direct Access to the Team</div>
+            </div>
+          </div>
+          <div class="about-right">
+            <h3>Why free mockups?</h3>
+            <p>We build a free version of your new website before you spend a single penny. You see the transformation — the before and after — before making any decision. No obligation, no pressure.</p>
+            <p>Most practices are shocked by the difference. That's the point. We want you to see exactly what your practice could look like online before you commit.</p>
+            <p>If you love it and want to move forward, great. If the timing isn't right, no hard feelings.</p>
+            <div class="about-cta-box">
+              <h4>Prefer to talk it through first?</h4>
+              <p>Book a free, no-obligation 15-minute call. We'll review your current website and show you exactly what we'd change and why.</p>
+              <a href="https://calendly.com/hello-claritystudios/website-review-call" class="btn-primary" style="font-size:.88rem;display:inline-block">Book a Free Call on Calendly →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing-bg" id="pricing">
+      <div class="section-inner">
+        <div class="pricing-top">
+          <div class="section-eyebrow">Transparent Pricing</div>
+          <h2>No Hidden Costs, <em>Ever</em></h2>
+          <p class="lead">One clear price to build it. One low monthly fee to keep it running. That's it.</p>
+        </div>
+        <div class="pricing-label">Website Build — One-Off</div>
+        <div class="pricing-grid">
+          <div class="price-card">
+            <div class="price-tier">Essential</div>
+            <div class="price-amount">£1,500</div>
+            <div class="price-desc">one-off build</div>
+            <ul class="price-features">
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Single-page site</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Mobile responsive</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Contact form</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Basic SEO setup</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>12 months hosting</li>
+            </ul>
+            <a href="#contact" class="price-cta">Get started</a>
+          </div>
+          <div class="price-card featured">
+            <div class="price-badge">Most popular</div>
+            <div class="price-tier">Standard</div>
+            <div class="price-amount">£2,500</div>
+            <div class="price-desc">one-off build</div>
+            <ul class="price-features">
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>3-5 page site</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Professional copywriting</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Full SEO setup</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Google Analytics</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Booking-ready</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>12 months hosting</li>
+            </ul>
+            <a href="#contact" class="price-cta">Get started</a>
+          </div>
+          <div class="price-card">
+            <div class="price-tier">Premium</div>
+            <div class="price-amount">£3,500+</div>
+            <div class="price-desc">one-off build</div>
+            <ul class="price-features">
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>5+ pages</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Full SEO & local SEO</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Booking system integration</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Blog setup</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Custom integrations</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Priority support</li>
+            </ul>
+            <a href="#contact" class="price-cta">Get started</a>
+          </div>
+        </div>
+        <div class="pricing-label" style="margin-top:2.5rem">Monthly Care Plans — Optional, Begins at Launch</div>
+        <div class="pricing-grid">
+          <div class="price-card">
+            <div class="price-tier">Essential Care</div>
+            <div class="price-amount" style="font-size:2rem">£99<span style="font-size:1rem;font-weight:400;color:var(--mid)">/mo</span></div>
+            <div class="price-desc">billed monthly</div>
+            <ul class="price-features">
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Managed hosting & SSL</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Security monitoring</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>1hr content updates/mo</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Email support</li>
+            </ul>
+            <a href="#contact" class="price-cta">Get started</a>
+          </div>
+          <div class="price-card featured">
+            <div class="price-badge">Best value</div>
+            <div class="price-tier">Standard Care</div>
+            <div class="price-amount" style="font-size:2rem">£149<span style="font-size:1rem;font-weight:400;color:rgba(255,255,255,.4)">/mo</span></div>
+            <div class="price-desc">billed monthly</div>
+            <ul class="price-features">
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Everything in Essential</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>2hrs content updates/mo</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Quarterly analytics report</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(196,146,42,.8)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Priority 24hr support</li>
+            </ul>
+            <a href="#contact" class="price-cta">Get started</a>
+          </div>
+          <div class="price-card">
+            <div class="price-tier">Growth Care</div>
+            <div class="price-amount" style="font-size:2rem">£249<span style="font-size:1rem;font-weight:400;color:var(--mid)">/mo</span></div>
+            <div class="price-desc">billed monthly</div>
+            <ul class="price-features">
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Everything in Standard</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Monthly local SEO work</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Google Business management</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Monthly blog post</li>
+              <li><div class="price-check"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#C4922A" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Review generation support</li>
+            </ul>
+            <a href="#contact" class="price-cta">Get started</a>
+          </div>
+        </div>
+        <div class="pricing-note">All builds: <strong>50% deposit to begin, 50% on launch day.</strong> All care plans require a minimum 6-month commitment. Payment by card via Stripe.</div>
+      </div>
+    </section>
+
+    <section class="contact-bg" id="contact">
+      <div class="section-inner">
+        <div class="contact-inner">
+          <div class="section-eyebrow">Get in Touch</div>
+          <h2>Let's Build Something <em>Exceptional</em></h2>
+          <p class="lead">Tell us about your practice and what you're hoping to achieve. We'll respond within one business day.</p>
+          <form class="contact-form" action="https://formspree.io/f/mjglryjl" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Your name</label>
+                <input type="text" name="name" class="form-input" placeholder="Jane Smith" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Practice name</label>
+                <input type="text" name="practice" class="form-input" placeholder="Greenhill Dental" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email address</label>
+              <input type="email" name="email" class="form-input" placeholder="jane@yourpractice.co.uk" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone (optional)</label>
+              <input type="tel" name="phone" class="form-input" placeholder="0114 XXX XXXX">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tell us about your practice</label>
+              <textarea name="message" class="form-input" placeholder="Where are you based, what kind of practice do you run, and what is your main goal for a new website?" required></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message</button>
+          </form>
+          <p class="contact-meta">Or email us directly at <a href="mailto:hello@claritystudios.uk">hello@claritystudios.uk</a> &nbsp;·&nbsp; Response within 1 business day</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">Clarity<span>Studios</span></a>
+        <p class="footer-tagline">Bespoke, hand-coded websites for independent dental practices across the UK.</p>
+        <p class="footer-contact-line"><a href="mailto:hello@claritystudios.uk">hello@claritystudios.uk</a></p>
+        <p class="footer-contact-line"><a href="https://calendly.com/hello-claritystudios/website-review-call">Book a free call →</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#why-us">Why Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Website Design</a></li>
+          <li><a href="#services">SEO</a></li>
+          <li><a href="#services">Copywriting</a></li>
+          <li><a href="#services">Website Refresh</a></li>
+          <li><a href="#services">Monthly Care Plans</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Clarity Studios. All rights reserved.</p>
+      <p>Designed & built by Clarity Studios · United Kingdom</p>
+    </div>
+  </footer>
+
+</body>
+</html>
